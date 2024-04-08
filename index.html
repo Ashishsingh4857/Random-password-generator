@@ -1,0 +1,78 @@
+sJKS<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>random password Generate</title>
+    <link
+      rel="stylesheet"
+      href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Generate a <br /><span>Random password</span></h1>
+      <div class="display">
+        <input
+          type="text"
+          id="password"
+          placeholder="password" />
+        <!-- <img src="copy.png" alt="" class="copy"> -->
+        <i
+          class="fa-regular fa-copy fa-3x"
+          id="copy"
+          onclick="copy()"></i>
+      </div>
+      <button
+        id="Generate-btn"
+        onclick="Generate()">
+        <i class="fa-solid fa-bolt"></i>Generate password
+      </button>
+    </div>
+
+    <script>
+      const passwordbox = document.getElementById("password");
+      const length = 13;
+      // const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const loverCase = "abcdefghijklmnopqrstuvwxyz";
+      const number = "123456789";
+      const symbol = "@#$%&";
+      const allchar = upperCase + loverCase + number;
+      // const ashu = "ashusingh"
+      console.log(allchar.length);
+
+      const Generate = () => {
+        let password = "";
+        // password += upperCase[Math.floor(Math.random()* upperCase.length)];
+        password += upperCase.charAt(
+          Math.floor(Math.random() * upperCase.length)
+        );
+        password += loverCase.charAt(
+          Math.floor(Math.random() * loverCase.length)
+        );
+        password += number.charAt(Math.floor(Math.random() * number.length));
+        password += symbol.charAt(Math.floor(Math.random() * symbol.length));
+
+        while (length > password.length) {
+          //password += allchar[Math.floor(Math.random()* upperCase.length)]
+          password += allchar.charAt(
+            Math.floor(Math.random() * allchar.length)
+          );
+          // password += ashu;
+        }
+
+        passwordbox.value = password;
+        console.log(password.length);
+      };
+      const copy = () => {
+        passwordbox.select();
+        document.execCommand("copy");
+      };
+    </script>
+  </body>
+</html>
